@@ -1,0 +1,361 @@
+<% layout('layouts/boilerplate') %> 
+             <!-- value="https://www.quandl.com/api/v3/datasets/BSE/BOM533096.json?start_date=2020-11-22&end_date=2021-06-11&api_key=doYHMguM2PQsxYxNwTCt" -->
+
+<body id="bodyStockMarket" style="background-color: rgb(202, 248, 248);">
+    
+    <% if(success && success.length){ %>
+
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </symbol>
+            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </symbol>
+            <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </symbol>
+          </svg>
+
+          <div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+            <div>
+                <strong><%= success %> </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
+    <% } %> 
+
+    <div id="head" class="container my-5">
+        <h1 id="heading1" class="mb-5">Information Portal for Share Bazaar </h1>
+    </div>
+        
+    <form class="my-3 mx-3" action="/bse/shareinfo" method="POST">
+        <div class="my-3">
+            <h4 class="my-3 fw-bold fs-3"> <u>Adani Power</u></h4>
+        </div>
+        <div>
+            <p id="p1" class="fw-bold fs-6">
+                Adani Power Limited is the power business subsidiary of Indian conglomerate Adani Group with head office at Ahmedabad, Gujarat. It is a private thermal power producer, with capacity of 12,450 MW.
+
+               It also operates a mega solar plant of 40 MW at Naliya, Bitta, Kutch, Gujarat. It is India's first company that synchronises the supercritical technology.
+
+              Adani Godda Power is implementing a 1,600 MW plant at Jharkhand. The company has signed long term power purchase agreements of about 9,153 MW with government of Gujarat, Maharashtra, Haryana, Rajasthan, Karnataka, and Punjab.
+            </p>
+        </div>
+        <button id="b1" class="btn btn-success my-3 mx-3">Click here to see details</button>
+        <input type="hidden" name="share[api]" value="BOM533096">
+    </form>
+
+        <form class="my-3 mx-3" action="/bse/portfolio" method="POST">
+            <input type="hidden" name="share[api]" value="BOM533096">
+            <input type="hidden" name="share[name]" value="Adani Power">
+            <button id="b2" class="btn btn-success my-3 mx-3">Add to your Portfolio</button>
+        </form>
+
+    <hr style="height:8px;border-width:0px;color:gray;background-color:rgb(8, 1, 1)">
+   
+
+    <form class="my-3 mx-3" action="/bse/shareinfo" method="POST">
+        <div class="my-3">
+            <h4 class="my-3 fw-bold fs-3"> <u>Jindal Stainless (Hisar) Ltd</u></h4>
+        </div>
+        <div>
+            <p id="p1" class="fw-bold fs-6">
+                Jindal Stainless (Hisar) Limited (JSHL) was established in 1975 when Shri OP Jindal envisioned a self-reliant India, capable of fulfilling its stainless steel demand. Stainless steel, then, was no less than a luxury metal and India was completely dependent on imports to meet its demand which attracted duties up to 300%. It was Shri O P Jindal's vision and his pioneering spirit that led to the establishment of JSHL, India's first stainless steel manufacturing unit.
+            </p>
+        </div>
+        
+        <button id="b1" class="btn btn-success my-3 mx-3">Click here to see details</button>
+        <input type="hidden" name="share[api]" value="BOM539597">
+        
+    </form>
+    <form class="my-3 mx-3" action="/bse/portfolio" method="POST">
+        <input type="hidden" name="share[api]" value="BOM539597">
+        <input type="hidden" name="share[name]" value="Jindal Stainless Ltd">
+        <button id="b2" class="btn btn-success my-3 mx-3">Add to your Portfolio</button>
+    </form>
+
+<hr style="height:8px;border-width:0px;color:gray;background-color:rgb(8, 1, 1)">
+        
+    <form class="my-3 mx-3" action="/bse/shareinfo" method="POST">
+        <div class="my-3">
+            <h4 class="my-3 fw-bold fs-3"> <u>ICICI Prudential Mutual Fund</u></h4>
+        </div>
+        <div>
+            <p id="p1" class="fw-bold fs-6">
+                ICICI Prudential Asset Management Company Ltd. is a leading asset management company (AMC) in the country focused on bridging the gap between savings & investments and creating long term wealth for investors through a range of simple and relevant investment solutions. The AMC is a joint venture between ICICI Bank, a well-known and trusted name in financial services in India and Prudential Plc, one of UK’s largest players in the financial services sectors. Throughout these years of the joint venture, the company has forged a position of pre-eminence in the Indian Mutual Fund industry.
+            </p>
+        </div>
+        
+        <button id="b1" class="btn btn-success my-3 mx-3">Click here to see details</button>
+        <input type="hidden" name="share[api]" value="BOM539397">
+    
+    </form>
+    <form class="my-3 mx-3" action="/bse/portfolio" method="POST">
+        <input type="hidden" name="share[api]" value="BOM539397">
+        <input type="hidden" name="share[name]" value="ICICI Prudential Mutual Fund">
+        <button id="b2" class="btn btn-success my-3 mx-3">Add to your Portfolio</button>
+    </form>
+
+<hr style="height:8px;border-width:0px;color:gray;background-color:rgb(8, 1, 1)">
+        
+    <form class="my-3 mx-3" action="/bse/shareinfo" method="POST">
+        <div class="my-3">
+            <h4 class="my-3 fw-bold fs-3"> <u>Vidhi Specialty Food Ingredients Ltd</u></h4>
+        </div>
+        <div>
+            <p id="p1" class="fw-bold fs-6">
+                Incepted in the year 1994, we "Vidhi Speciality Food Ingredients Limited" is a leading organization engaged in Manufacturing, wholesaling and exporting a broad and comprehensive collection of Basic Food Color, Food Ingredients, Lake Food Color, and D&C Food Color. Developed using premium grade inputs and sophisticated tools, these are made in compliance with the standards laid down by the industry. Moreover, these are well checked on a number of standards before final shipment of the order. We offer these products at market leading rates.
+
+                We have offered our products to numerous customers in the past and have maintained great relationships with all of them. Moreover, we are backed by a huge unit which is well sprawled over a vast area of land.   
+            </p>
+        </div>
+       
+        <button id="b1" class="btn btn-success my-3 mx-3">Click here to see details</button>
+        <input type="hidden" name="share[api]" value="BOM531717">
+
+    </form>   
+    <form class="my-3 mx-3" action="/bse/portfolio" method="POST">
+        <input type="hidden" name="share[api]" value="BOM531717">
+        <input type="hidden" name="share[name]" value="Vidhi Specialty Food Ingredients Ltd">
+        <button id="b2" class="btn btn-success my-3 mx-3">Add to your Portfolio</button>
+    </form>
+
+<hr style="height:8px;border-width:0px;color:gray;background-color:rgb(8, 1, 1)">
+    
+    <form class="my-3 mx-3" action="/bse/shareinfo" method="POST">
+        <div class="my-3">
+            <h4 class="my-3 fw-bold fs-3"> <u>DR.AGARWALS EYE HOSPITAL LTD</u></h4>
+        </div>
+        <div>
+            <p id="p1" class="fw-bold fs-6">
+                Dr. Agarwal's Eye Hospital is a chain of eye specialty hospitals in India headquartered at Chennai, Tamil Nadu. It was founded by <a href="https://en.wikipedia.org/wiki/Jaiveer_Agarwal">Jaiveer Agarwal</a> with his wife Tahira Agarwal in Chennai, started as an eye care centre which has grown to more than 95+ centres in India and 14 centres overseas.
+
+                Amar Agarwal is the chairman and managing director of Dr. Agarwal's Eye Hospital   
+            </p>
+        </div>
+        
+        <button id="b1" class="btn btn-success my-3 mx-3">Click here to see details</button>
+        <input type="hidden" name="share[api]" value="BOM526783">
+    
+    </form>
+    <form class="my-3 mx-3" action="/bse/portfolio" method="POST">
+        <input type="hidden" name="share[api]" value="BOM526783">
+        <input type="hidden" name="share[name]" value="DR.AGARWALS EYE HOSPITAL LTD">
+        <button id="b2" class="btn btn-success my-3 mx-3">Add to your Portfolio</button>
+    </form>
+
+<hr style="height:8px;border-width:0px;color:gray;background-color:rgb(8, 1, 1)">
+
+    <form class="my-3 mx-3" action="/bse/shareinfo" method="POST">
+        <div class="my-3">
+            <h4 class="my-3 fw-bold fs-3"> <u>TATA STEEL LTD</u></h4>
+        </div>
+        <div>
+            <p id="p1" class="fw-bold fs-6">
+                Tata Steel Limited is an Indian multinational steel-making company based in Jamshedpur, Jharkhand, and is headquartered in Mumbai, Maharashtra, India. It is a subsidiary of the <a href="https://en.wikipedia.org/wiki/Tata_Group">Tata Group</a>.
+
+                Formerly known as Tata Iron and Steel Company Limited (TISCO), Tata Steel is among the top steel producing companies in the world with an annual crude steel capacity of 34 million tonnes per annum. It is one of the world's most geographically-diversified steel producers, with operations and commercial presence across the world. The group (excluding SEA operations) recorded a consolidated turnover of US$19.7 billion in the financial year ending 31 March 2020. It is the second largest steel company in India (measured by domestic production) with an annual capacity of 13 million tonnes after <a href="https://en.wikipedia.org/wiki/Steel_Authority_of_India">SAIL</a>.     
+            </p>
+        </div>
+       
+        <button id="b1" class="btn btn-success my-3 mx-3">Click here to see details</button>
+        <input type="hidden" name="share[api]" value="BOM500470">
+    
+    </form>
+    <form class="my-3 mx-3" action="/bse/portfolio" method="POST">
+        <input type="hidden" name="share[api]" value="BOM500470">
+        <input type="hidden" name="share[name]" value="TATA STEEL LTD">
+        <button id="b2" class="btn btn-success my-3 mx-3">Add to your Portfolio</button>
+    </form>
+
+<hr style="height:8px;border-width:0px;color:gray;background-color:rgb(8, 1, 1)">
+
+    <form class="my-3 mx-3" action="/bse/shareinfo" method="POST">
+        <div class="my-3">
+            <h4 class="my-3 fw-bold fs-3"> <u>TATA MOTORS LTD</u></h4>
+        </div>
+        <div>
+            <p id="p1" class="fw-bold fs-6">
+                Tata Motors Limited is an Indian multinational automotive manufacturing company, headquartered in Mumbai. Part of Tata Group, the company produces passenger cars, trucks, vans, coaches, buses, sports cars, construction equipment and military vehicles.[4]
+
+                Formerly known as Tata Engineering and Locomotive Company (TELCO), the company was founded in 1945 as a manufacturer of locomotives. The company manufactured its first commercial vehicle in 1954 in a collaboration with <a href="">Daimler-Benz</a> AG, which ended in 1969. Tata Motors entered the passenger vehicle market in 1988 with the launch of the TataMobile followed by the Tata Sierra in 1991, becoming the first Indian manufacturer to achieve the capability of developing a competitive indigenous automobile.   
+            </p>
+        </div>
+       
+        <button id="b1" class="btn btn-success my-3 mx-3">Click here to see details</button>
+        <input type="hidden" name="share[api]" value="BOM500570">
+    
+    </form>
+    <form class="my-3 mx-3" action="/bse/portfolio" method="POST">
+        <input type="hidden" name="share[api]" value="BOM500570">
+        <input type="hidden" name="share[name]" value="TATA MOTORS LTD">
+        <button id="b2" class="btn btn-success my-3 mx-3">Add to your Portfolio</button>
+    </form>
+
+<hr style="height:8px;border-width:0px;color:gray;background-color:rgb(8, 1, 1)">
+
+    <form class="my-3 mx-3" action="/bse/shareinfo" method="POST">
+        <div class="my-3">
+            <h4 class="my-3 fw-bold fs-3"> <u>TATA CONSULTANCY SERVICES LTD</u></h4>
+        </div>
+        <div>
+            <p id="p1" class="fw-bold fs-6">
+                Tata Consultancy Services (TCS) is an Indian multinational information technology (IT) services and consulting company, headquartered in Mumbai, Maharashtra, India and largest campus and workforce in Chennai, Tamil Nadu, India. As of May 2021, TCS is the largest company in the IT sector in the world by market capitalization of $169.2 billion. It is a subsidiary of the Tata Group and operates in 149 locations across 46 countries.
+
+                TCS is the second largest Indian company by <a href="https://en.wikipedia.org/wiki/Market_capitalization">market capitalization</a>. Tata Consultancy Services is now placed among the most valuable IT services brands worldwide.    
+            </p>
+        </div>
+        
+        <button id="b1" class="btn btn-success my-3 mx-3">Click here to see details</button>
+        <input type="hidden" name="share[api]" value="BOM532540">
+    
+    </form>
+    <form class="my-3 mx-3" action="/bse/portfolio" method="POST">
+        <input type="hidden" name="share[api]" value="BOM532540">
+        <input type="hidden" name="share[name]" value="TATA CONSULTANCY SERVICES LTD">
+        <button id="b2" class="btn btn-success my-3 mx-3">Add to your Portfolio</button>
+    </form>
+
+<hr style="height:8px;border-width:0px;color:gray;background-color:rgb(8, 1, 1)">
+
+    <form class="my-3 mx-3" action="/bse/shareinfo" method="POST">
+        <div class="my-3">
+            <h4 class="my-3 fw-bold fs-3"> <u>Tata Motors Ltd</u></h4>
+        </div>
+        <div>
+            <p id="p1" class="fw-bold fs-6">
+                Tata Motors Limited is an Indian multinational automotive manufacturing company, headquartered in Mumbai. Part of Tata Group, the company produces passenger cars, trucks, vans, coaches, buses, sports cars, construction equipment and military vehicles.[4]
+
+                Formerly known as Tata Engineering and Locomotive Company (TELCO), the company was founded in 1945 as a manufacturer of locomotives. The company manufactured its first commercial vehicle in 1954 in a collaboration with <a href="">Daimler-Benz</a> AG, which ended in 1969. Tata Motors entered the passenger vehicle market in 1988 with the launch of the TataMobile followed by the Tata Sierra in 1991, becoming the first Indian manufacturer to achieve the capability of developing a competitive indigenous automobile.   
+            </p>
+        </div>
+      
+        <button id="b1" class="btn btn-success my-3 mx-3">Click here to see details</button>
+        <input type="hidden" name="share[api]" value="BOM570001">
+    
+    </form>
+    <form class="my-3 mx-3" action="/bse/portfolio" method="POST">
+        <input type="hidden" name="share[api]" value="BOM570001">
+        <input type="hidden" name="share[name]" value="Tata Motors Ltd">
+        <button id="b2" class="btn btn-success my-3 mx-3">Add to your Portfolio</button>
+    </form>
+
+<hr style="height:8px;border-width:0px;color:gray;background-color:rgb(8, 1, 1)">
+
+    <form class="my-3 mx-3" action="/bse/shareinfo" method="POST">
+        <div class="my-3">
+            <h4 class="my-3 fw-bold fs-3"> <u>TATA CHEMICALS LTD</u></h4>
+        </div>
+        <div>
+            <p id="p1" class="fw-bold fs-6">
+                Tata Chemicals Limited (BSE: 500770) is an Indian global company with interests in chemicals, crop protection and specialty chemistry products headquartered in Mumbai, India.[2] The company is one of the largest chemical companies in India with operations in India, Europe, North America and Africa.[3] Tata Chemicals is a subsidiary of Tata Group conglomerate.    
+            </p>
+        </div>
+       
+        <button id="b1" class="btn btn-success my-3 mx-3">Click here to see details</button>
+        <input type="hidden" name="share[api]" value="BOM500770">
+
+    </form>
+    <form class="my-3 mx-3" action="/bse/portfolio" method="POST">
+        <input type="hidden" name="share[api]" value="BOM500770">
+        <input type="hidden" name="share[name]" value="TATA CHEMICALS LTD">
+        <button id="b2" class="btn btn-success my-3 mx-3">Add to your Portfolio</button>
+    </form>
+
+<hr style="height:8px;border-width:0px;color:gray;background-color:rgb(8, 1, 1)">
+
+    <form class="my-3 mx-3" action="/bse/shareinfo" method="POST">
+        <div class="my-3">
+            <h4 class="my-3 fw-bold fs-3"> <u>TATA METALIKS LTD</u></h4>
+        </div>
+        <div>
+            <p id="p1" class="fw-bold fs-6">
+                A subsidiary of Tata Steel, Tata Metaliks has its state-of-the-art manufacturing plant at Kharagpur, West Bengal, India which produces the finest quality of pig iron and ductile iron pipes in India. The plant's annual hot metal production capacity is 500,000 tonnes out of which 200,000 tonnes is converted into Ductile Iron (DI) pipes and 300,000 tonnes into pig iron.     
+            </p>
+        </div>
+        
+        <button id="b1" class="btn btn-success my-3 mx-3">Click here to see details</button>
+        <input type="hidden" name="share[api]" value="BOM513434">
+        
+    </form>
+    <form class="my-3 mx-3" action="/bse/portfolio" method="POST">
+        <input type="hidden" name="share[api]" value="BOM513434">
+        <input type="hidden" name="share[name]" value="TATA METALIKS LTD">
+        <button id="b2" class="btn btn-success my-3 mx-3">Add to your Portfolio</button>
+    </form>
+
+<hr style="height:8px;border-width:0px;color:gray;background-color:rgb(8, 1, 1)">
+
+    <form class="my-3 mx-3" action="/bse/shareinfo" method="POST">
+        <div class="my-3">
+            <h4 class="my-3 fw-bold fs-3"> <u>Parag Milk Foods Ltd</u></h4>
+        </div>
+        <div>
+            <p id="p1" class="fw-bold fs-6">
+                Parag Milk Foods is an Indian company that manufactures, markets and sells milk and milk products. The company is India's second largest producer of cheese under its brand Go and the country's largest producer of cow ghee under its brand Govardhan. As of 2017, the company's daily procurement of milk was 1.2 million litres.    
+            </p>
+        </div>
+        
+        <button id="b1" class="btn btn-success my-3 mx-3">Click here to see details</button>
+        <input type="hidden" name="share[api]" value="BOM539889">
+
+    </form>
+    <form class="my-3 mx-3" action="/bse/portfolio" method="POST">
+        <input type="hidden" name="share[api]" value="BOM539889">
+        <input type="hidden" name="share[name]" value="Parag Milk Foods Ltd">
+        <button id="b2" class="btn btn-success my-3 mx-3">Add to your Portfolio</button>
+    </form>
+
+<hr style="height:8px;border-width:0px;color:gray;background-color:rgb(8, 1, 1)">
+
+    <form class="my-3 mx-3" action="/bse/shareinfo" method="POST">
+        <div class="my-3">
+            <h4 class="my-3 fw-bold fs-3"> <u>Max India Ltd</u></h4>
+        </div>
+        <div>
+            <p id="p1" class="fw-bold fs-6">
+                Max Group is an Indian conglomerate headquartered in New Delhi, India, operating in the fields of life insurance, healthcare, hospitality, real estate and independent senior living. It was founded in 1985 by Analjit Singh.
+
+                Max's subsidiaries include Max Bupa, Max Life Insurance, Max Financial Services, Max Ventures and Industries, Max India, Max Speciality Films, Max Estates, Antara Senior Living.    
+            </p>
+        </div>
+        
+        <button id="b1" class="btn btn-success my-3 mx-3">Click here to see details</button>
+        <input type="hidden" name="share[api]" value="BOM539981">
+
+    </form>
+<form class="my-3 mx-3" action="/bse/portfolio" method="POST">
+        <input type="hidden" name="share[api]" value="BOM539981">
+        <input type="hidden" name="share[name]" value="Max India Ltd">
+        <button id="b2" class="btn btn-success my-3 mx-3">Add to your Portfolio</button>
+    </form>
+
+<hr style="height:8px;border-width:0px;color:gray;background-color:rgb(8, 1, 1)">
+
+    <form class="my-3 mx-3" action="/bse/shareinfo" method="POST">
+        <div class="my-3">
+            <h4 class="my-3 fw-bold fs-3"> <u>Lux Industries Ltd</u></h4>
+        </div>
+        <div>
+            <p id="p1" class="fw-bold fs-6">
+                Lux industries, previously known as Biswanath Hosiery Mills, is an Indian underwear company headquartered in Kolkata, West Bengal, India. Its offerings include various kinds of hosiery products for men, women and children. It is one of the oldest underwear companies in India. 
+            </p>
+        </div>
+        
+        <button id="b1" class="btn btn-success my-3 mx-3">Click here to see details</button>
+        <input type="hidden" name="share[api]" value="BOM539542">
+    </form>
+
+    <form class="my-3 mx-3" action="/bse/portfolio" method="POST">
+        <input type="hidden" name="share[api]" value="BOM539542">
+        <input type="hidden" name="share[name]" value="Lux Industries Ltd">
+        <button id="b2" class="btn btn-success my-3 mx-3">Add to your Portfolio</button>
+    </form>
+
+<hr style="height:8px;border-width:0px;color:gray;background-color:rgb(8, 1, 1)">
+
+</body>
+
+    

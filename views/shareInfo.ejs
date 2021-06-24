@@ -1,0 +1,254 @@
+<% layout('layouts/boilerplate') %> 
+
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.stock.min.js"></script>
+
+<div id="mydiv" data-test=<%= code %>></div>
+
+<script type="text/javascript" >
+
+var apiCode = document.getElementById('mydiv').dataset.test;
+ 
+  window.onload =  function () {
+  var dataPoints1 = [], dataPoints2 = [], dataPoints3 = [];
+  var stockChart = new CanvasJS.StockChart("chartContainer",{
+    exportEnabled: true,
+    theme: "light2",
+    title:{
+      text:"StockChart"
+    },
+    charts: [{
+      toolTip: {
+        shared: true
+      },
+      axisX: {
+        lineThickness: 5,
+        tickLength: 0,
+        labelFormatter: function(e) {
+          return "";
+        },
+        crosshair: {
+          enabled: true,
+          snapToDataPoint: true,
+          labelFormatter: function(e) {
+            return ""
+          }
+        }
+      },
+      axisY2: {
+        title: "Price",
+        prefix: "₹"
+      },
+      legend: {
+        verticalAlign: "top",
+        horizontalAlign: "left"
+      },
+      data: [{
+        name: "Price (in Rs)",
+        yValueFormatString: "₹#,###.##",
+        axisYType: "secondary",
+        type: "candlestick",
+        risingColor: "green",
+        fallingColor: "red",
+        dataPoints : dataPoints1
+      }]
+    },{
+      height: 100,
+      toolTip: {
+        shared: true
+      },
+      axisX: {
+        crosshair: {
+          enabled: true,
+          snapToDataPoint: true
+        }
+      },
+      axisY2: {
+        prefix: "₹",
+        title: "Total Turnover"
+      },
+      legend: {
+        horizontalAlign: "left"
+      },
+      data: [{
+        yValueFormatString: "₹#,###.##",
+        axisYType: "secondary",
+        name: "Total Turnover",
+        dataPoints : dataPoints2
+      }]
+    }],
+    navigator: {
+      data: [{
+        color: "grey",
+        dataPoints: dataPoints3
+      }],
+      slider: {
+        minimum: new Date(2018, 06, 01),
+        maximum: new Date(2018, 08, 01)
+      }
+    }
+  });
+  
+  fetch(`https://www.quandl.com/api/v3/datasets/BSE/${apiCode}.json?start_date=2018-11-22&end_date=2021-06-11&api_key=doYHMguM2PQsxYxNwTCt`)
+    .then(res => res.json())
+      .then(json =>  {for(var i = 0; i < json.dataset.data.length; i++)
+      {
+      dataPoints1.push({x: new Date(json.dataset.data[i][0]), y: [Number(json.dataset.data[i][1]), Number(json.dataset.data[i][2]), Number(json.dataset.data[i][3]), Number(json.dataset.data[i][4])], color: json.dataset.data[i][1] < json.dataset.data[i][4] ? "green" : "red"});;
+      dataPoints2.push({x: new Date(json.dataset.data[i][0]), y: Number(json.dataset.data[i][8]), color: json.dataset.data[i][1] < json.dataset.data[i][4] ? "green" : "red"});
+      dataPoints3.push({x: new Date(json.dataset.data[i][0]), y: Number(json.dataset.data[i][4])});
+    }
+    stockChart.render();
+  });
+}
+  </script>
+
+  <body id="infoPageBody" class="p-3 mb-2 text-dark" style="background-color:rgb(197, 252, 252);">
+
+
+    <% if(success && success.length){ %>
+
+      <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+          <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+          </symbol>
+          <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+          </symbol>
+          <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+          </symbol>
+        </svg>
+
+        <div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
+          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+          <div>
+              <strong><%= success %> </strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        </div>
+  <% } %> 
+
+    <div>
+      <% var name = json.dataset.name %> 
+      <h2 class="my-3 fw-bold fs-1"><%= name %></h2>
+  
+      <% var tab = json.dataset.column_names %> 
+      <% var dat = json.dataset.data %> 
+      <h4 class="my-3 fw-bold fs-5">Last Status on date: <%= dat[0][0] %></h4>
+     <div class="my-5">
+
+      <table class="table table-hover table-info table-striped" style="border: 2px solid black;">
+        <thead>
+          <tr>
+            <th scope="col"> <%= tab[0] %>  </th>
+            <th scope="col"><%= tab[1] %></th>
+            <th scope="col"><%= tab[2] %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= dat[0][0] %></td>
+            <td><%= dat[0][1] %></td>
+            <td><%= dat[0][2] %></td>
+          </tr>
+
+          <thead>
+            <tr>
+              <th scope="col"> <%= tab[3] %>  </th>
+              <th scope="col"><%= tab[4] %></th>
+              <th scope="col"><%= tab[5] %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= dat[0][3] %></td>
+              <td><%= dat[0][4] %></td>
+              <td><%= dat[0][5] %></td>
+            </tr>
+
+            <thead>
+              <tr>
+                <th scope="col"> <%= tab[6] %>  </th>
+                <th scope="col"><%= tab[7] %></th>
+                <th scope="col"><%= tab[8] %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= dat[0][6] %></td>
+                <td><%= dat[0][7] %></td>
+                <td><%= dat[0][8] %></td>
+              </tr>
+
+              <thead>
+                <tr>
+                  <th scope="col"> <%= tab[9] %>  </th>
+                  <th scope="col"><%= tab[10] %></th>
+                  <th scope="col"><%= tab[11] %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= dat[0][9] %></td>
+                  <td><%= dat[0][10] %></td>
+                  <td><%= dat[0][11] %></td>
+                </tr>
+
+      </table>
+
+     </div>
+  
+     <div id="chartContainer" style="height: 400px; width: 100%; background-color: rgb(98, 186, 248)"></div>
+  
+     <h2 class="my-3">Leave an opinion</h2>
+
+     <form action="/bse/share/<%= code %>/reviews" class="mb-3 validated-form"  method="POST" novalidate>
+       <div class="mb-3" style="width: 250px;">
+         <label class="form-label" for="rating"> <strong> Rating</strong></label>
+         <input class="form-range" type="range" min="1" max="5" id="rating" name="review[rating]">
+       </div>
+       <div class="mb-3" style="width: 500px;">
+         <label class="form-label" for="body"> <strong>Opinion</strong></label>
+         <textarea class="form-control" name="review[body]" id="body" cols="30" rows="5" style="border: 2px solid black;" required> </textarea>
+       </div>
+       <button class="btn btn-success">Submit</button>
+     </form>
+<% for(let review of shareResult.reviews){ %> 
+  <div class="card mb-3" style="border: 2px solid black; width: 500px;">
+     <div class="card-body">
+       <h5 class="card-title">Rating: <%= review.rating %> </h5>
+     
+        <p class="card-text" ><strong>Opinion: </strong><%= review.body %> </p>
+
+       <% if(!currentUser){ %> 
+        <% } else { %> 
+     <form action="/bse/share/<%=code%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+    <button class="btn btn-danger btn-sm">Delete</button>
+    <a class="btn btn-primary btn-sm" href="/bse/share/<%= code %>/reviews/<%= review._id %>/edit">Edit</a>
+    </form>
+    <% } %> 
+      </div>
+    </div>
+<% } %> 
+  </div>
+  <a class="btn btn-info my-3 mx-3" href="/bse/stockmarket">Back to Stockmarket</a>
+  </body>
+
+  
+<script>
+  (function () {
+    'use strict'
+    var forms = document.querySelectorAll('.validated-form')
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+  
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+   </script>

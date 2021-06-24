@@ -1,0 +1,247 @@
+<% layout('layouts/boilerplate') %> 
+
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.stock.min.js"></script>
+
+<div id="mydiv" data-test=<%= bseCode %>></div>
+
+<script type="text/javascript" >
+
+var apiCode = document.getElementById('mydiv').dataset.test;
+
+  // window.onload = function () {
+  //   var dps1 = [], dps2= [];
+  //   var stockChart = new CanvasJS.StockChart("chartContainer",{
+  //     theme: "light2",
+  //     exportEnabled: true,
+  //     title:{
+  //       text:"StockChart"
+  //     },
+  //     subtitles: [{
+  //       text: "Price (in USD)"
+  //     }],
+  //     charts: [{
+  //       axisX: {
+  //         crosshair: {
+  //           enabled: true,
+  //           snapToDataPoint: true
+  //         }
+  //       },
+  //       axisY: {
+  //         prefix: "$"
+  //       },
+  //       data: [{
+  //         type: "candlestick",
+  //         yValueFormatString: "$#,###.##",
+  //         dataPoints : dps1
+  //       }]
+  //     }],
+  //     navigator: {
+  //       data: [{
+  //         dataPoints: dps2
+  //       }],
+  //       slider: {
+  //         minimum: new Date(2018, 04, 01),
+  //         maximum: new Date(2018, 06, 01)
+  //       }
+  //     } 
+  //   });
+  //   // const x =["https://www.quandl.com/api/v3/datasets/BSE/BOM500770.json?start_date=2020-11-22&end_date=2021-06-11&api_key=doYHMguM2PQsxYxNwTCt", "https://www.quandl.com/api/v3/datasets/BSE/BOM513434.json?start_date=2020-11-22&end_date=2021-06-11&api_key=doYHMguM2PQsxYxNwTCt", "https://www.quandl.com/api/v3/datasets/BSE/BOM570001.json?start_date=2020-11-22&end_date=2021-06-11&api_key=doYHMguM2PQsxYxNwTCt", "https://www.quandl.com/api/v3/datasets/BSE/BOM532540.json?start_date=2020-11-22&end_date=2021-06-11&api_key=doYHMguM2PQsxYxNwTCt", "https://www.quandl.com/api/v3/datasets/BSE/BOM500570.json?start_date=2020-11-22&end_date=2021-06-11&api_key=doYHMguM2PQsxYxNwTCt", "https://www.quandl.com/api/v3/datasets/BSE/BOM533096.json?start_date=2020-11-22&end_date=2021-06-11&api_key=doYHMguM2PQsxYxNwTCt","https://www.quandl.com/api/v3/datasets/BSE/BOM539397.json?start_date=2020-10-13&end_date=2021-03-13&api_key=doYHMguM2PQsxYxNwTCt","https://www.quandl.com/api/v3/datasets/BSE/BOM539597.json?start_date=2020-03-13&end_date=2021-08-29&api_key=doYHMguM2PQsxYxNwTCt", "https://www.quandl.com/api/v3/datasets/BSE/BOM531717.json?start_date=2020-09-16&end_date=2021-04-18&api_key=doYHMguM2PQsxYxNwTCt","https://www.quandl.com/api/v3/datasets/BSE/BOM526783.json?start_date=2020-11-22&end_date=2021-06-11&api_key=doYHMguM2PQsxYxNwTCt","https://www.quandl.com/api/v3/datasets/BSE/BOM500470.json?start_date=2020-11-22&end_date=2021-06-11&api_key=doYHMguM2PQsxYxNwTCt"];
+  //   //  fetch(x[Math.floor(Math.random()*12)])
+  //   fetch(`https://www.quandl.com/api/v3/datasets/BSE/${apiCode}.json?start_date=2020-11-22&end_date=2021-06-11&api_key=doYHMguM2PQsxYxNwTCt`)
+  //   .then(res => res.json())
+  //     .then(json =>  {for(var i = 0; i < json.dataset.data.length; i++)
+  //     {
+  //       dps1.push({x: new Date(json.dataset.data[i][0]), y: [Number(json.dataset.data[i][1]), Number(json.dataset.data[i][2]), Number(json.dataset.data[i][3]), Number(json.dataset.data[i][4])]});
+  //       dps2.push({x: new Date(json.dataset.data[i][0]), y: Number(json.dataset.data[i][4])});
+  //     }
+  //     stockChart.render();
+  // });
+  // }
+
+ 
+  window.onload = function () {
+  var dataPoints1 = [], dataPoints2 = [], dataPoints3 = [];
+  var stockChart = new CanvasJS.StockChart("chartContainer",{
+    exportEnabled: true,
+    theme: "light2",
+    title:{
+      text:"StockChart"
+    },
+    charts: [{
+      toolTip: {
+        shared: true
+      },
+      axisX: {
+        lineThickness: 5,
+        tickLength: 0,
+        labelFormatter: function(e) {
+          return "";
+        },
+        crosshair: {
+          enabled: true,
+          snapToDataPoint: true,
+          labelFormatter: function(e) {
+            return ""
+          }
+        }
+      },
+      axisY2: {
+        title: "Price",
+        prefix: "₹"
+      },
+      legend: {
+        verticalAlign: "top",
+        horizontalAlign: "left"
+      },
+      data: [{
+        name: "Price (in Rs)",
+        yValueFormatString: "₹#,###.##",
+        axisYType: "secondary",
+        type: "candlestick",
+        risingColor: "green",
+        fallingColor: "red",
+        dataPoints : dataPoints1
+      }]
+    },{
+      height: 100,
+      toolTip: {
+        shared: true
+      },
+      axisX: {
+        crosshair: {
+          enabled: true,
+          snapToDataPoint: true
+        }
+      },
+      axisY2: {
+        prefix: "₹",
+        title: "Total Turnover"
+      },
+      legend: {
+        horizontalAlign: "left"
+      },
+      data: [{
+        yValueFormatString: "₹#,###.##",
+        axisYType: "secondary",
+        name: "Total Turnover",
+        dataPoints : dataPoints2
+      }]
+    }],
+    navigator: {
+      data: [{
+        color: "grey",
+        dataPoints: dataPoints3
+      }],
+      slider: {
+        minimum: new Date(2018, 06, 01),
+        maximum: new Date(2018, 08, 01)
+      }
+    }
+  });
+  
+  fetch(`https://www.quandl.com/api/v3/datasets/BSE/${apiCode}.json?start_date=2019-04-22&end_date=2021-06-11&api_key=doYHMguM2PQsxYxNwTCt`)
+    .then(res => res.json())
+      .then(json =>  {for(var i = 0; i < json.dataset.data.length; i++)
+      {
+      dataPoints1.push({x: new Date(json.dataset.data[i][0]), y: [Number(json.dataset.data[i][1]), Number(json.dataset.data[i][2]), Number(json.dataset.data[i][3]), Number(json.dataset.data[i][4])], color: json.dataset.data[i][1] < json.dataset.data[i][4] ? "green" : "red"});;
+      dataPoints2.push({x: new Date(json.dataset.data[i][0]), y: Number(json.dataset.data[i][8]), color: json.dataset.data[i][1] < json.dataset.data[i][4] ? "green" : "red"});
+      dataPoints3.push({x: new Date(json.dataset.data[i][0]), y: Number(json.dataset.data[i][4])});
+    }
+    stockChart.render();
+  });
+}
+  </script>
+
+  <body id="infoPageBody" class="p-3 mb-2 text-dark" style="background-color:rgb(197, 252, 252);">
+
+    <div>
+      <% var name = json.dataset.name %> 
+      <h2 class="my-3 fw-bold fs-1"><%= name %></h2>
+  
+      <% var tab = json.dataset.column_names %> 
+      <% var dat = json.dataset.data %> 
+      <h4 class="my-3 fw-bold fs-5">Last Status on date: <%= dat[0][0] %></h4>
+     <div class="my-5">
+
+      <table class="table table-hover table-info table-striped">
+        <thead>
+          <tr>
+            <th scope="col"> <%= tab[0] %>  </th>
+            <th scope="col"><%= tab[1] %></th>
+            <th scope="col"><%= tab[2] %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= dat[0][0] %></td>
+            <td><%= dat[0][1] %></td>
+            <td><%= dat[0][2] %></td>
+          </tr>
+
+          <thead>
+            <tr>
+              <th scope="col"> <%= tab[3] %>  </th>
+              <th scope="col"><%= tab[4] %></th>
+              <th scope="col"><%= tab[5] %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= dat[0][3] %></td>
+              <td><%= dat[0][4] %></td>
+              <td><%= dat[0][5] %></td>
+            </tr>
+
+            <thead>
+              <tr>
+                <th scope="col"> <%= tab[6] %>  </th>
+                <th scope="col"><%= tab[7] %></th>
+                <th scope="col"><%= tab[8] %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= dat[0][6] %></td>
+                <td><%= dat[0][7] %></td>
+                <td><%= dat[0][8] %></td>
+              </tr>
+
+              <thead>
+                <tr>
+                  <th scope="col"> <%= tab[9] %>  </th>
+                  <th scope="col"><%= tab[10] %></th>
+                  <th scope="col"><%= tab[11] %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= dat[0][9] %></td>
+                  <td><%= dat[0][10] %></td>
+                  <td><%= dat[0][11] %></td>
+                </tr>
+
+      </table>
+
+     </div>
+  
+     <div id="chartContainer" style="height: 400px; width: 100%; background-color: rgb(98, 186, 248)"></div>
+  
+     <h2 class="my-3">Leave an opinion</h2>
+
+     <form action="" class="mb-3">
+       <div class="mb-3">
+         <label class="form-label" for="rating"> <strong> Rating</strong></label>
+         <input class="form-range" type="range" min="1" max="5" id="rating" name="review[rating]">
+       </div>
+       <div class="mb-3">
+         <label class="form-label" for="body"> <strong>Opinion</strong></label>
+         <textarea class="form-control" type="range" name="review[body]" id="body" cols="30" rows="5"> </textarea>
+       </div>
+       <button class="btn btn-success">Submit</button>
+     </form>
+
+    <a class="btn btn-info my-3 mx-3" href="/bse/stockmarket">Back to Stockmarket</a>
+  </div>
+    
+  </body>
