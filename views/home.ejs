@@ -1,0 +1,69 @@
+<% layout('layouts/boilerplate') %> 
+
+<% if(success && success.length){ %>
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+        </symbol>
+        <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+        </symbol>
+        <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </symbol>
+      </svg>
+
+      <div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+        <div>
+            <strong><%= success %> </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+<% } %> 
+
+<body id="homeBody" style="background-color:rgb(202,248,248);">
+    <div class="container my-5">
+        <div>
+            <h3>An Introduction to the Indian Stock Market</h3> 
+        </div>
+        <div>
+            <p class="fw-lighter fs-5">
+                Mark Twain once divided the world into two kinds of people: those who have seen the famous Indian monument, the Taj Mahal, and those who haven't. The same could be said about investors.
+                <br>
+                There are two kinds of investors: those who know about the investment opportunities in <a href="https://www.investopedia.com/articles/investing/043015/fundamentals-how-india-makes-its-money.asp">India</a> and those who don't. Although India's exchanges equate to less than 2.2% of the total global market capitalization as of Jan. 2020, upon closer inspection, you will find the same things you would expect from any promising market.
+                <br>
+                Here we'll provide an overview of the Indian <a href="https://www.investopedia.com/terms/s/stockmarket.asp">stock market</a> and how interested investors can gain exposure.
+            </p>
+            <hr style="height:8px;border-width:0px;color:gray;background-color:rgb(8, 1, 1)">
+            <div>
+                <h3>The BSE and NSE</h3>
+            </div>
+            <div>
+                <p class="fw-lighter fs-5">
+                    Most of the trading in the Indian stock market takes place on its two stock exchanges: the <a href="https://www.investopedia.com/terms/b/bombaystockexchange.asp">Bombay Stock Exchange</a> (BSE) and the <a href="https://www.investopedia.com/terms/n/national_stock_exchange.asp">National Stock Exchange</a> (NSE). The BSE has been in existence since 1875. The NSE, on the other hand, was founded in 1992 and started trading in 1994. However, both exchanges follow the same trading mechanism, trading hours, and settlement process.
+                    <br>
+                    As of February 2020, the BSE had 5,518 listed firms, whereas the rival NSE had about 1,799 as of Dec. 31, 2019. Out of all the listed firms on the BSE, only about 500 firms constitute more than 90% of its <a href="https://www.investopedia.com/terms/m/marketcapitalization.asp">market capitalization</a>; the rest of the crowd consists of highly <a href="https://www.investopedia.com/terms/i/illiquid.asp">illiquid</a> shares.
+                    <br>
+                    Almost all the significant firms of India are listed on both the exchanges. The BSE is the older stock market but the NSE is the largest stock market, in terms of volume. As such, the NSE is a more liquid market. In terms of market cap, they're both comparable at about $2.3 trillion. Both exchanges compete for the order flow that leads to reduced costs, <a href="https://www.investopedia.com/terms/m/marketefficiency.asp">market efficiency</a>, and innovation. The presence of <a href="https://www.investopedia.com/terms/a/arbitrageur.asp">arbitrageurs</a> keeps the prices on the two stock exchanges within a very tight range.
+                </p>
+            </div>
+        </div>
+        <hr style="height:8px;border-width:0px;color:gray;background-color:rgb(8, 1, 1)">
+        <div>
+            <h3>Trade Mechanism</h3>
+        </div>
+        <div>
+            <p class="fw-lighter fs-5">
+                Trading at both the exchanges takes place through an open electronic <a href="https://www.investopedia.com/terms/l/limitorderbook.asp">limit order book</a> in which order matching is done by the trading computer.4﻿ There are no <a href="https://www.investopedia.com/terms/m/marketmaker.asp">market makers</a> and the entire process is order-driven, which means that market orders placed by investors are automatically matched with the best <a href="https://www.investopedia.com/terms/l/limitorder.asp">limit orders</a>. As a result, buyers and sellers remain anonymous.
+                <br>
+                The advantage of an <a href="https://www.investopedia.com/terms/o/orderdriven.asp">order-driven market</a> is that it brings more <a href="https://www.investopedia.com/terms/t/transparency.asp">transparency</a> by displaying all buy and sell orders in the trading system. However, in the absence of market makers, there is no guarantee that orders will be executed.
+                <br>
+                All orders in the trading system need to be placed through brokers, many of which provide an online trading facility to retail customers. <a href="https://www.investopedia.com/terms/i/institutionalinvestor.asp">Institutional investors</a> can also take advantage of the <a href="https://www.investopedia.com/terms/d/directmarketaccess.asp">direct market access</a> (DMA) option in which they use trading terminals provided by brokers for placing orders directly into the stock market trading system.
+            </p>
+        </div>
+    </div>
+
+</body>
+        
